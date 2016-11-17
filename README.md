@@ -14,6 +14,7 @@ bundle install
 * Add to your project Rakefile
 
 spec = Gem::Specification.find_by_name 'compare_files'
+
 load "#{spec.gem_dir}/lib/tasks/compare_files.rake"
 
 * Run from terminal rake task (use two parameters: 2 files with absolute paths)
