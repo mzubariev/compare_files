@@ -5,7 +5,7 @@ The program for comparing of two files per each line.
 
 1. Add to your project Gemfile following line
 
-gem 'compare_files', '~> 0.1.0', github: 'nzubariev/compare_files'
+gem 'compare_files', '~> 0.1.0'
 
 2. Run from terminal
 

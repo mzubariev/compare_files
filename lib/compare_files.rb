@@ -13,14 +13,7 @@ module CompareFiles
       @result_array = []
 
       (0...max_arrays_length).each do |i|
-
-        if @file1array[i].present? && @file2array[i].blank?
-          @result_array << "-   #{@file1array[i]}"
-          next
-        end
-        comparison_value = @file1array[i] <=> @file2array[i]
-
-        make_result_array(comparison_value, @file1array[i], @file2array[i])
+        make_result_array(@file1array[i], @file2array[i])
       end
 
       print_result
@@ -42,12 +35,13 @@ module CompareFiles
       instance_arrays.map(&:length).max
     end
 
-    def make_result_array(comparison_value, arr1value, arr2value)
-      case comparison_value
-        when nil then @result_array << "+   #{arr2value}"
-        when -1 then @result_array << "+   #{arr2value}"
-        when 0 then @result_array << "    #{arr1value}"
-        when 1 then @result_array << "*   #{arr1value} | #{arr2value}"
+    def make_result_array(arr1value, arr2value)
+      case
+        when arr1value.blank? && arr2value.blank? then return
+        when arr1value.present? && arr2value.blank? then @result_array << "-   #{arr1value}"
+        when arr1value.blank? && arr2value.present? then @result_array << "+   #{arr2value}"
+        when arr1value == arr2value then @result_array << "    #{arr1value}"
+        when arr1value != arr2value then @result_array << "*   #{arr1value} | #{arr2value}"
       end
     end
 
